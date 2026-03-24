@@ -22,14 +22,14 @@ module Api::V1
     def show
       @trip = Trip.find(params[:id])
 
-      render json: @trip, status: :ok
+      render json: @trip, serializer: TripSerializer, status: :ok
     end
 
     def create
       @trip = Trip.new(trip_params)
 
       if @trip.save
-        render json: @trip, status: :created
+        render json: @trip, serializer: TripSerializer, status: :created
       else
         render json: { errors: @trip.errors.as_json }, status: :unprocessable_content
       end

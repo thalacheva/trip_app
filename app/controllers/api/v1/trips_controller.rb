@@ -31,7 +31,7 @@ module Api::V1
       if @trip.save
         render json: @trip, status: :created
       else
-        render json: @trip.errors, status: :unprocessable_entity
+        render json: { errors: @trip.errors.as_json }, status: :unprocessable_content
       end
     end
 
